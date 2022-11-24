@@ -1,0 +1,150 @@
+Project 2: Six Degrees
+Joel Brandinger
+December 2021
+
+------------------------------------------------------------------------------
+                              PURPOSE
+------------------------------------------------------------------------------
+The purpose of this project was to create the six degrees game using artists
+and their songs. The user can pick any two artists and see if they are related
+through their collaborations. They can also choose artists to exclude in this
+chain of collaborations. 
+------------------------------------------------------------------------------
+                          ACKNOWLEDGEMENTS
+------------------------------------------------------------------------------
+Resources used during this project include the lecture slides on graphs and
+their traversal and cplusplus.com as a reference for the vector and stack 
+classes. 
+------------------------------------------------------------------------------
+                               FILES
+------------------------------------------------------------------------------
+artists.txt - data file with all the artists names and the songs they have
+produced
+
+CollabGraph.cpp - implementation file for the graph. Specifically, the
+the three functions I implemented: populate_graph, report_path, and 
+get_vertex_neighbors.
+
+CollabGraph.h - reference file for the graph
+
+SixDegrees.cpp - this is the implementation file that runs/ plays the six
+degrees game. 
+
+SixDegrees.h - reference for the six degrees class. the only public function
+the client can call besides the constructor is start, which starts the program
+
+unit_tests.h - testing file for the three implemented functions from the 
+CollabGraph: populate_graph, report_path, and get_vertex_neighbors
+
+main.cpp - main driver that takes in the command line arguments and runs the
+start function for the SixDegrees class.
+
+MakeFile - contains all the linking and compilation rules
+
+README - the file you are currently reading. 
+------------------------------------------------------------------------------
+                            COMPILE/ RUN 
+------------------------------------------------------------------------------
+To compile type "make" and to run the program type:
+"./SixDegrees dataFile [commandsFile] [outputFile]", where datFile is the file
+of artists and songs to populate the graph with, the commandsFile and
+outputFile are where you wish to direct input output. To run unit testing file
+type "unit_test". All the compilation and linking rules can be found in the
+makefile.
+------------------------------------------------------------------------------
+                     DATA STRUCTURES & ALGORITHMS
+------------------------------------------------------------------------------
+The data structure used in this program is a graph represented as an unordered
+map. An unordered map is a data structure represented as a set of key & value
+pairs. Using this key/ value system we can store Artists along with all the
+songs they have produced. The artists are stored as vertices and the songs
+they have produced are their adjacent edges. This data structure provides for
+an efficient way of connecting artists who share a song that they have
+produced together.
+
+The algorithms implemented include breadth first search, depth first search,
+and exclusive search. 
+
+1. Breadth first search is a graph traversal that starts at a given vertex and
+visits all of its unmarked neighbors. These neighbors are then marked and 
+added to a queue. Any desired operation is then performed before moving to the
+next neighbor. Once all neighbors have been visited we move to the next vertex
+in the queue and repeat the procedure. 
+
+2. Depth first search starts at a given vertex and visits the unmarked
+neighbor that has the lowest value (numerical/ alphabetical) order. This 
+neighbor is then marked and any desired operation is performed before moving to
+the next neighbor. Once you reach a vertex that has no unmarked neighbors you
+back track to the last vertex that had an unmarked vertex.
+
+3. Exclusive search uses a bread first search traversal, but includes one or 
+several vertices to exclude (they can't be used).
+
+------------------------------------------------------------------------------
+                                TESTING
+------------------------------------------------------------------------------
+The three implemented functions in CollabGraph.cpp were tested in the unit
+testing file. For each function a small graph was populated using a vector of
+artists and a few songs. The functions were tested for their purpose and all
+performed successfully. 
+
+Although, unit testing was conducted, the majority of the testing/ verification
+that the program behaves as intended was done through running the main driver.
+While, writing the functions and program, I first created a for loop that
+printed the names of all the artists in the vector used to populate the graph.
+This verified that I had properly read the dataFile. After doing this, I was
+able to run the populate_graph function and the print function to see if the
+graph had properly been created. Since the output matched the reference file
+I am confident it is correct. The program also successfully prints and quits
+upon user command provides the proper response for incorrect commands.
+
+In order to test bfs, dfs, and the not commands. I ran several various cases
+and possible inputs through the reference and then diff tested the output with
+that of my own program. I created input and output files to run as
+command line arguments and tested all edge cases I could think of. Finally, 
+I created my own file of artists to test edge cases where an artists has no 
+songs.
+
+I also ran my program through valgrind to make sure there were no memory
+errors.
+
+------------------------------------------------------------------------------
+                                QUESTIONS
+------------------------------------------------------------------------------
+1. Q: What is the difference between BFS and DFS? What are their pros/ cons?
+
+   A: BFS uses a queue to keep track of which node to visit next while DFS
+      uses the stack since it is implemented recursively. Pros: of BFS are
+      that it will always return the shortest path between two nodes whereas
+      in DFS it may not. Pros of DFS are that it uses less memory whereas BFS
+      uses more memory.
+   
+2. Q: How did you chose the tackle the not commands? How do they compare to
+      BFS and DFS algorithms?
+
+   A: In order to implement the not command I read all the artists to exclude
+      into a vector. I then went through this vector and marked all the
+      vertices so that they would not be visited in the traversal. I then
+      performed a BFS traversal on the graph. 
+   
+3. Q: State what you think your runtime is for each of the commands (excluding
+      quit) and why.
+      
+   A: print - O(|V| + |E|). To print you must go through all vertices (artists)
+      and print all of their edges (songs) .
+      
+      bfs - O(|V| + |E|). We must traverse through all vertices and the number
+      edges that they have.
+      
+      dfs - O(|V| + |E|). Same as dfs. Traverse through all vertices and their
+      edges.
+      
+      not - O(|V| + |E| + n). Same procedure as BFS but prior to the graph
+      traversal. You must go through and mark all n vertices to exclude. 
+------------------------------------------------------------------------------
+                        TOTAL TIME SPENT ON PROJECT 
+------------------------------------------------------------------------------
+I spent 12 hours on phase 2 of this project.
+I spent a total of 23 hours on this project.
+
+

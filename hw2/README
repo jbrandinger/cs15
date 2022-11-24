@@ -1,0 +1,122 @@
+/**********************************************************
+* HW2: Metro Simulator
+* Comp 15
+* README
+* Joel Brandinger
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make MetroSim
+     - run executable with
+            ./MetroSim stationsFile passFile [commands]
+
+
+Program Purpose:
+
+    This homework assignment simulates a running train to accommodate
+passengers arriving/departing a metro.  Learn how to design and
+modularize code and work with documented libraries.
+
+
+Acknowledgements: 
+
+
+Files: 
+
+main.cpp:
+     STUDENT TO-DO: Main file should be short and handle simple driver
+     functions such as reading in files.
+
+MetroSim.cpp:
+     STUDENT TO-DO: Implementation of MetroSim class.  Main
+     functionality of running the Metro Simulation, should be able to
+     move trains and deal with passengers going on/off the train.
+
+MetroSim.h:
+     STUDENT TO-DO: Interface of MetroSim class.
+
+stations.txt:
+     an example file containing a list of stations.
+
+test_commands.txt:
+     sample list of commands that you could give to the simulator
+
+the_metroSim:
+     reference implementation for students to see how 
+
+
+Note:  the program should handle all cases.
+
+Data Structures:
+    
+    In this assignment the main data structures used were vectors. The train 
+is represented by a vector of passenger queues where each queue is the
+destination station of the passengers. The stations are also represented
+as a vector and each station has a passenger queue of passengers waiting
+to board the train. 
+
+
+Testing:
+
+    The first testing I completed was for the print passenger function. I used
+the unt_tests file and created a function that created a passenger and 
+printed their information.
+
+    Next, as I was constructing the implementation for the PasaengerQueue I
+unit tested each function to make sure it worked properly and did what I
+wanted it to. I didn't really have any issues with the PassengerQueue and 
+it all worked the way it was supposed to.
+    
+    The bulk of the work and testing came from the MetroSim class. Most, if
+not all, of the the testing for MetroSim implementation was done through 
+main.cpp and the running MetroSim. 
+
+    I started by creating the command line arguments that that run the 
+program. I ensured they worked properly and that the files properly opened.
+Next, I worked on the individual MetroSim functions start with the start 
+function that reads in the stations file and initializes the stations and
+train vector with empty passenger queues. 
+
+    Next I worked on the command loop and continually feeding in commands 
+until the user or file input the command "m f". The hardest part here was
+finding a way to read in the first part and determining wether to add a
+passenger. However, I figured that out by only reading in one part of the
+line at a time. 
+
+    I finished up by writing a function that prints the state of the
+simulation after every command. It was a bit tricky to get the format to 
+line up correctly, but I just played around with it and compared it with
+the_MetroSim output until the two matched.
+
+    One issue I ran into with my program was that I kept getting warnings 
+in my for loops when I declared an int i and compared it to the size of the
+vector since the size() function in the vector standard library returns a 
+type long int. For some of the loops I just changed the declaration of i to
+type unsigned long int, however some of the loops used i later in the loop 
+for int comparisons so I wasn't able to change the type of i.
+
+    I also ran into some issues with certain passengers not getting off at
+the train at the right station. I realized it was a two part problem.
+First I was running a for loop against the size of queue but everytime a
+passenger got off the size would change. I fixed this issue by creating a new
+constant variable that I set equal to the inititial size. The 2nd part 
+was that I wasn't placing my new passengers in the proper train queue.
+Instead of placing them in the departure - 1 queue I was placing them in the 
+station - 1 queue which was an easy fix.
+
+    Finally, I tested my program against the_MetroSim and used diff testing 
+to compare their outputs. After some adjustments everything seemed to work 
+properly. 
+
+    The last testing I did was diff testing with Metro_Sim. I used a commands 
+text that I created and compared the two stdouts. They both were the same. 
+
+
+Part that you found most difficult:
+
+    The part of the homework I found the most difficult was reading in the file
+and figuring out how to read in only the first part and then use the numbers
+that were strings for the passengers arrival and departure station. Once I
+figured it out it was relatively easy but I just haven't had a lot of
+experience with reading in from files. 

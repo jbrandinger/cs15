@@ -1,0 +1,7 @@
+{ 6 + dup 10 < { 10 > } { 10 == } if }
+#t
+#f
+#t
+Error: datum_not_bool
+6
+Thank you for using CalcYouLater.

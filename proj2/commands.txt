@@ -1,0 +1,36 @@
+bfs
+Kesha
+Khalid
+dfs
+Kesha
+Khalid
+not
+Kesha
+Khalid
+Macklemore
+*
+bfs
+Adele
+Justin Bieber
+not
+Adele
+Justin Bieber
+Bruno Mars
+*
+dfs
+Swae Lee
+The Chainsmokers
+bfs
+wrong1
+wrong2
+not
+hi
+Marshmello
+x
+y
+z
+*
+dfs
+Avicii
+Eminem
+print

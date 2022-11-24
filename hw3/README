@@ -1,0 +1,102 @@
+CS 15 Homework 3: Binary Search Trees
+Joel Brandinger
+November 2021
+
+-----------------------------------------------------------------------------
+                                 PURPOSE 
+-----------------------------------------------------------------------------
+The purpose of this assignment was to implement a working binary search tree.
+The BST stores integer values and supports duplicates. It keeps a count of
+the number of times a certain value has been inserted. 
+-----------------------------------------------------------------------------
+                             ACKNOWLEDGEMENTS
+-----------------------------------------------------------------------------
+Resources used during this homework include the lecture slides on binary
+search trees, lecture slides on traversals, and stackoverflow for some help
+with syntax and purpose of the assignment operator. 
+-----------------------------------------------------------------------------
+                                  FILES
+-----------------------------------------------------------------------------
+BinarySearchTree.cpp - The implementation for the binary search tree. Contains
+all the function definitions for the tree. 
+
+BinarySearchTree.h - The reference file for the binary search tree. Contains
+all the public and private functions and shows the client what they are able 
+to do with the tree.
+
+hw3.cpp - The driver file. Runs a series of tests on the binary search tree
+that can be compared to the reference file for diff testing.
+
+Makefile - Contains all the linking and compilation rules/ commands.
+
+README - The file you are currently reading. Detailed explanation of the
+program and all its files.
+
+unit_tests.h - Unit testing file for the binary search tree. Each function
+I implemented was tested in various cases to make sure they worked as they 
+were supposed to.
+-----------------------------------------------------------------------------
+                               COMPILE/ RUN 
+-----------------------------------------------------------------------------
+To compile type "make" and to run the driver "./hw3". To run unit testing file
+type "unit_test". All the compilation and linking rules can be found in the
+makefile.
+-----------------------------------------------------------------------------
+                        DATA STRUCTURES & ALGORITHMS
+-----------------------------------------------------------------------------
+The data structure used in this program is a binary search tree. Binary trees
+contain nodes with no more than two children per node. Binary search trees 
+have a key invariant, that is, given any node k, all nodes less than k are in
+k's left subtree and all nodes greater than k are in k's right subtree. 
+
+This invariant allows for binary search when looking up a certain element. 
+The time complexity of finding a node in a full well behaved BST is limited to
+O(log n), while an arbitrary BST could technically keep adding larger values
+essentially making it a linked list. This would result in O(n) time complexity 
+when searching for a given node.
+-----------------------------------------------------------------------------
+                                 TESTING 
+-----------------------------------------------------------------------------
+The bulk of my testing was done using the unit testing file. For each function
+I implemented in BinarySearchTree.cpp a testing function was created in
+unit_tests.h. Each testing function attempted to test the purpose of the
+function as well as any edge cases I could think of. I also used the driver 
+file to diff test with the implementation.
+
+The majority of the testing was devoted to the remove function. All the other
+functions were relatively straight forward and didn't require too much testing.
+However I found that the remove function had several edge cases that made it
+a bit more difficult and required more extensive testing. For starters, if the
+node to be removed is the root then it has no parents. Thus, for every
+recursive call I had to check if the value to be removed was equal to the root.
+Essentially, the remove function has 7 unique cases: tree is empty, node is 
+not in the tree, node is the root, node is a duplicate, node has no children,
+one child, or two children.
+-----------------------------------------------------------------------------
+                                QUESTIONS 
+-----------------------------------------------------------------------------
+1. My implementation of the remove function will use the find_min() function.
+   I plan to implement my remove function in the same way as the reference,
+   that is, when removing a node with two children I will replace that node
+   with the smallest value in the right subtree.
+
+2. Yes, if the function is invoked a null pointer.
+
+3. (a) A null pointer is returned when the find min or max function is invoked
+       on a null pointer.
+
+4. Check if the function is invoked a null pointer, if so, return that null
+   pointer. Check if the left child of the current node is a null pointer, 
+   if so, return the current node. If neither of the above are true, 
+   recursively call find_min on the left child of the current node and 
+   return that node.
+   
+5. Check if the function is invoked a null pointer, if so, return that null
+   pointer. Check if the right child of the current node is a null pointer, 
+   if so, return the current node. If neither of the above are true, 
+   recursively call find_max on the right child of the current node and 
+   return that node.
+
+6. Check if tree is empty, if so, return. Recursively call post_order_delete
+   on left child of current node. Recursively call post_order_delete on right
+   child of current node. Delete current node.

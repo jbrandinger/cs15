@@ -1,0 +1,22 @@
+5 2 +
+23 2 -
+/
+{ 5 2 * }
+exec
+4 dup 10 ==
+{ 1 0 / }
+{ 6 + dup 10 < { 10 > } { 10 == } if }
+print
+if
+print
+not
+print
+drop
+clear
+3 4 <
+{ #t } { #f } if
+print
+5 not
+3 { fact.cylc } file
+print
+quit

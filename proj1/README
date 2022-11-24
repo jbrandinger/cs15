@@ -1,0 +1,114 @@
+CS 15 Project 1: CalcYouLater
+Joel Brandinger
+October 2021
+
+----------------------------------------------------------------------------
+                              PURPOSE 
+----------------------------------------------------------------------------
+    The purpose of this program was to implement an RPN calculator using 
+a stack of Datums. The three different types of datums include ints, rstrings,
+and bools. With these three types the user is able to perform several
+operations.
+
+---------------------------------------------------------------------------
+                          ACKNOWLEDGEMENTS
+----------------------------------------------------------------------------
+    Resources used during this project include "cplusplus.com" for an 
+std::vector reference, stack overflow for some guidance using input stream
+as well as some other minor issues that came up. Piazza was also refernced 
+to see common student errors. My TA in lab also helped me with how to
+approach a question I had regarding output from the reference in regards to
+nested RPN strings.
+
+----------------------------------------------------------------------------
+                               FILES 
+----------------------------------------------------------------------------
+DatumStack.h - shows the interface for the Datum Stack along with its public
+and private member variables and functions
+
+DatumStack.cpp - the implementation of the Datum Stack. Creates all the
+functions for the class.
+
+unit_tests.h - this file was used to test all the functions I wrote for the
+the DatumStack class and make sure the initialization of the RPNCalc class 
+worked properly.
+
+parser.cpp - contains the parseRString function that converts and RPN string 
+to a string to be added to the stack.
+
+main.cpp - very short file that creates an instance of RPNCalc and runs the
+command loop.
+
+RPNCalc.h - interface for the RPN calculator. Shows all the public functions
+available to the client and the private helper functions I used to accomplish
+them.
+
+RPNCalc.cpp - implementation for the RPN calculator. Creates all the
+functions shown in the interface.
+
+test_file.txt - sample commands used to diff test output from my program
+with the reference.
+
+Makefile - contains all the rules for compilation, linking, and running the
+programs.
+
+----------------------------------------------------------------------------
+                            COMPILE & RUN 
+----------------------------------------------------------------------------
+    The rules for compiling and linking can be found in the Makefile.
+To run the testing file for DatumStack use "unit_test". This compiles and runs
+the unit_tests.h as well as DatumStack.h and DatumStack.cpp. To compile and 
+run the CalcYouLater program use "make" to compile and "./CalcYouLater" 
+to run. 
+
+----------------------------------------------------------------------------
+                      DATA STRUCTURES & ALGORITHMS
+----------------------------------------------------------------------------
+    The main data structure used in this program is a stack. The stack 
+contains type Datums and is represented by an std::vector. The front of the 
+vector represents the bottom of the stack and the back of the vector 
+represents the top of the stack. The stack is only manipulated at the top and 
+follows a "first in last out" approach. Thus, when approaching certain 
+operations elements have to be carefully considered when popping of the stack
+and how they are stored. That is, when performing operations where order
+matters, the deeper element comes first in the equation.
+
+----------------------------------------------------------------------------
+                               TESTING 
+----------------------------------------------------------------------------
+    To test the Datumstack class a unit_tests file was created. Each function 
+implemented in DatumStack was tested using cassert and/ or print statements.
+For the "top" and "pop" functions the runtime_error was tested by trying to 
+run the functions with an empty stack. Both functions properly threw the
+correct error "empty_stack". After passing these tests, they were commented
+out.
+
+    To test the parseRString function I used the main.cpp. Since the function
+is called after an initial "{" has been read all the testing lines involved
+expressions such as "2 3 }" and " 2 { 3 4 + } }". I tested the function using
+cin and I also created a testing file to see if the proper strings were
+printed.
+
+    To test RPNCalc main.cpp was used to run the CalcYouLater program. As I 
+went along and built each function for the RPNCalc class I tested it by first
+performing the operation in the reference and seeing the output. I then 
+performed the exact same operation in my program and made sure both programs
+produced the same output. 
+
+    While testing I ran into several errors that took quite a while to debug.
+Most of these errors were solved by placing several print statements and 
+seeing where the program went and at what point it seemed to stop working
+properly. It was quite tedious and took a step by step approach. 
+
+    One of the main issues I ran into and that was hardest to figure out was 
+executing the RPN string. I figured out how to use a stringstream to pass 
+string back into the command loop after having read the first "{", but I
+wasn't sure how to approach the second "}". I finally figured out how to solve
+the issue in a similar way to parseRString. That is, I kept a brace counter 
+and added each eleme of the string to a final string as long as the left 
+brace count didn't match up with the right brace count. 
+
+    I finished up testing by trying as many different inputs as I could and
+comparing them with the reference. I tested fact.cylc and fib.cylc with
+several ints. I also made a test file that I ran on the command line and 
+diff tested the output with the reference.

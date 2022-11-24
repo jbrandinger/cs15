@@ -1,0 +1,88 @@
+----------------------------------------------------------------------
+|                      CS 15 HOMEWORK 1: LISTS                       |
+| [Joel Brandinger]                                                  |
+| [28 September 2021]                                                |
+----------------------------------------------------------------------
+
+                           ---- PURPOSE ----
+This program offers two different lists that store characters. They
+maintain the stored characters in their given order, with some extra
+features, such as the ability to concatenate lists.
+
+                      ---- ACKNOWLEDGEMENTS ----
+I received some help from my friend Andrew who is a good programmer. I
+also googled a few questions I had regarding certain syntax.
+
+                            ---- FILES ----
+CharArrayList.h: This is the interface for the CharArrayList class. It gives
+the client a good idea of what they are able to with the list and the
+functions it has.
+
+CharArrayList.cpp: This is the implementation of the CharArrayList class. It
+defines all of the functions of the list.
+
+CharLinkedList.h: This is the interface of for the CharLinkedList class. It
+allows the client to see the class and what sort of operations they are 
+able to perform on the list. 
+
+CharLinkedList.cpp: This is the implementation of the CharLinkedList class. It
+defines all the functions of the list.
+
+Makefile: The makefile contains the code for the compilation and linking 
+of all the files.
+
+unit_tests.h: This file invdividually tests all of the functions of both the
+CharArrayList and CharLinkedList classes. Each function was tested using 
+either assert or print statements or both. The file also include several 
+tests that were designed to purposely fail, these tests have been commented
+out. 
+
+                 ---- COMPILE / RUN INSTRUCTIONS ----
+Simply type "unit_test" to run the unit tests for the CharArrayList
+and CharLinkedList classes. This folder contains no driver, or
+application, besides the unit tests for the list classes.
+
+                ---- DATA STRUCTURES / ALGORITHMS ---- 
+The data structures used in this homework were an array list and a linked 
+list.
+
+ArrayList: array list is a type of list used to store a certain type of data.
+An array list is adjustable and dynamically grows and shrinks to fit the 
+number of elements. One of the main benefits of an array list is that it is 
+extremely easy to accss the element at any given index. You can easily add 
+and remove objects to an arraylist.
+
+LinkedList: linked list is also a type of list used to store a certain data 
+type. A linked list contains a series of nodes that store the data and each 
+node has a pointer the next node which connects the list. Linked lists can be
+singly linked or doubly linked. The difference being that a doubly linked list
+contains a pointer to the previous node as well. This can be benefical for 
+accessing the last element of the list since the first element has a pointer
+the last, connecting the list in a circle. 
+
+
+                           ---- TESTING ----
+Testing for this assignment was split up into two parts, the testing for all
+the CharArrayList functions and the tesing for all the CharLinkedList
+functions. 
+
+I started by testing the CharArrayList functions. After writing a function in
+CharArraylist.cpp implentation file I would switch over to the unit_tests.h
+file and write a test function. Most of the tests followed a similiar format.
+Initialize an empty list, initialize a one char list, and intialize a multi 
+char list. Then test the three lists in regards to the desired function.
+Finally, try to think of any possible edge cases that could create a bug and
+test those as well. There were also a few cases where I created a test that 
+should purposefully fail. After making sure these tests failed they were 
+commented out.
+
+While testing the CharLinkedList functions I followed a similar format to 
+the CharArrayList testing. I wrote a function in the implementaion file then 
+unit tested it and continued through all the functions in that manner. I used
+the same format of intializing an empty list, a one char list, and a multi 
+char list. I tested each of the three lists in the functions purpose and
+also tested any edge cases I could think of. 
+
+                         ---- TIME SPENT ----
+I spent a total of 20 hours on this homework assignment. 
+        
